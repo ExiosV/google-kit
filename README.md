@@ -18,18 +18,18 @@ photos = Photos(auth).upload_media_item(b"img", "run.jpg", "morning run")
 `GoogleError` subclasses `RuntimeError` and carries `.status` (HTTP code) and `.body` (response text
 or payload), so existing `except RuntimeError` code keeps working.
 
-## Install (vendoring)
+## Install
 
-App images are built on devicex2 without a registry and without credentials, so a private git
-dependency cannot be installed in the Dockerfile. Each project commits a copy instead:
+The repo is public: pin a tag in `pyproject.toml` and pip fetches the GitHub tarball (no git, no credentials, works in
+the Docker builds on devicex2):
 
-```bash
-cd google-kit && scripts/vendor.sh ../health-sync   # writes src/google_kit/ (+ VENDORED.txt)
+```toml
+dependencies = ["google-kit @ https://github.com/ExiosV/google-kit/archive/refs/tags/v0.1.0.tar.gz", ...]
 ```
 
-The project's setuptools `packages.find` (`where = ["src"]`) then ships it; add `requests` to its
-dependencies. To change the client edit **this** repo, bump `__version__`, rerun `vendor.sh` in
-every project (PR per project).
+To change the library edit **this** repo, bump `__version__` + `pyproject.toml`, merge, tag `vX.Y.Z`, then bump the tag
+in each consumer (PR per project). `scripts/vendor.sh` is kept only for a consumer that cannot reach GitHub at build
+time.
 
 ## Migration map (old function → google_kit call)
 
