@@ -7,7 +7,7 @@ from .gmail import Gmail
 from .photos import GooglePhotosResult, Photos
 from .sheets import Sheets
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = [
     "Calendar",
     "Drive",
