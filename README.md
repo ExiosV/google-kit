@@ -24,7 +24,7 @@ The repo is public: pin a tag in `pyproject.toml` and pip fetches the GitHub tar
 the Docker builds on devicex2):
 
 ```toml
-dependencies = ["google-kit @ https://github.com/ExiosV/google-kit/archive/refs/tags/v0.1.0.tar.gz", ...]
+dependencies = ["google-kit @ https://github.com/ExiosV/google-kit/archive/refs/tags/v0.1.1.tar.gz", ...]
 ```
 
 To change the library edit **this** repo, bump `__version__` + `pyproject.toml`, merge, tag `vX.Y.Z`, then bump the tag
